@@ -9,6 +9,15 @@ const userSchema = new mongoose.Schema(
     otp: { type: String, default: null },
     otpExpires: { type: Date, default: null },
     role: { type: String, enum: ["user", "admin"], default: "user" },
+    tournaments: [
+      {
+        tournamentId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Tournament",
+        },
+        balance: { type: Number, default: 0 },
+      },
+    ],
   },
   { timestamps: true }
 );

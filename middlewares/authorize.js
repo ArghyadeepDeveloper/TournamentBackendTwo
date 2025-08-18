@@ -38,7 +38,7 @@ export const authorizeUser = () => {
 export const checkTournamentCreator = async (req, res, next) => {
   try {
     const { tournamentId } = req.params;
-    const userId = req.user.id; // coming from authorize middleware
+    const userId = req.user.id;
 
     const tournament = await Tournament.findById(tournamentId);
 
@@ -46,7 +46,7 @@ export const checkTournamentCreator = async (req, res, next) => {
       return res.status(404).json({ message: "Tournament not found" });
     }
 
-    if (tournament.createdBy.toString() !== userId) {
+    if (tournament.createdBy.toString() !== userId.toString()) {
       return res
         .status(403)
         .json({ message: "Access denied: Not the creator" });

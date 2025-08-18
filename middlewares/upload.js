@@ -13,7 +13,6 @@ export const parseExcel = (fieldName) => {
           return res.status(400).json({ message: "No file uploaded" });
         }
 
-        // Read Excel file
         const workbook = xlsx.readFile(req.file.path);
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
